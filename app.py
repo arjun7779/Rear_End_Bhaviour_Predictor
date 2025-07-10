@@ -48,7 +48,7 @@ st.sidebar.download_button("Download Brake Duration Sample CSV", duration_csv, "
 st.header("📊 Evaluate on Sample/Test Data with Known Labels")
 if selected_model == "Brake Intensity":
     if data_option == "Upload Your Own Data":
-        sample_data_file = st.file_uploader("Upload a CSV with known features and Brake Intensity labels (target column last)", type=["csv"], key="intensity_sample")
+        sample_data_file = st.file_uploader("Upload a CSV with known features and Brake Intensity labels (last column should be 'brake_intensity')", type=["csv"], key="intensity_sample")
         if sample_data_file:
             test_df = pd.read_csv(sample_data_file)
         else:
@@ -59,7 +59,7 @@ if selected_model == "Brake Intensity":
         st.info("Using default Brake Intensity sample data.")
 else:
     if data_option == "Upload Your Own Data":
-        sample_data_file = st.file_uploader("Upload a CSV with known features and Brake Duration labels (target column last)", type=["csv"], key="duration_sample")
+        sample_data_file = st.file_uploader("Upload a CSV with known features and Brake Duration labels (last column should be 'brake_duration')", type=["csv"], key="duration_sample")
         if sample_data_file:
             test_df = pd.read_csv(sample_data_file)
         else:
@@ -134,7 +134,7 @@ if test_df is not None:
 
 # User data prediction
 st.header("🧾 Predict on Unseen Data (Without Labels)")
-user_data_file = st.file_uploader("Upload a CSV containing only features (without target labels) to get predictions", type=["csv"], key="user")
+user_data_file = st.file_uploader("Upload a CSV with only feature values (no target column) to receive model predictions", type=["csv"], key="user")
 
 if user_data_file:
     user_df = pd.read_csv(user_data_file)
